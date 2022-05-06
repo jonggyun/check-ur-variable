@@ -45,6 +45,9 @@ export function countingWord(words: string[]) {
       const combineCount = wordArr.reduce<Record<string, number>>(
         (prev, word) => {
           const lowerCaseWord = word.toLowerCase();
+          if (lowerCaseWord === 'constructor') {
+            return prev;
+          }
           return {
             ...prev,
             [lowerCaseWord]: wordObject[lowerCaseWord]
@@ -58,7 +61,6 @@ export function countingWord(words: string[]) {
     },
     {},
   );
-
   return Object.entries(countedWords)
     .sort(([_, a], [__, b]) => b - a)
     .reduce(
