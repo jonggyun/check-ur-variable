@@ -39,19 +39,19 @@ function getFiles() {
 
 (async function () {
   const filePaths: string[] = getFiles();
-  createFile('result/target_files.txt', filePaths);
+  createFile('result/target_files.json', filePaths);
 
   const variables = await getVariables(filePaths);
-  createFile('result/variables.txt', variables);
+  createFile('result/variables.json', variables);
   const variablePrefixes = countingPrefix(variables);
-  createFile('result/variables_prefixes.txt', variablePrefixes);
+  createFile('result/variables_prefixes.json', variablePrefixes);
 
   const functionNames = await getFunctionNames(filePaths);
-  createFile('result/functions.txt', functionNames);
+  createFile('result/functions.json', functionNames);
   const functionPrefixes = countingPrefix(functionNames);
-  createFile('result/functions_prefixes.txt', functionPrefixes);
+  createFile('result/functions_prefixes.json', functionPrefixes);
 
   const allNames = new Set([...variables, ...functionNames]);
   const words = countingWord([...allNames]);
-  createFile('result/words.txt', words);
+  createFile('result/words.json', words);
 })();
